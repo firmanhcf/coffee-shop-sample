@@ -25,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d1853634-ac3e-46cc-9292-91cc4a2bbc4d"
+      }
+    },
+    "owner": "firmanhcf",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
