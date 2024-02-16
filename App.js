@@ -8,7 +8,10 @@ import Login from './app/screens/login/Login'
 import * as SecureStore from "expo-secure-store"
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigator from './app/components/TabNavigator'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import ProductDetail from './app/screens/product/ProductDetail'
 
+const Stack = createNativeStackNavigator()
 const tokenCache = {
   async getToken(key) {
     try {
@@ -43,7 +46,10 @@ export default function App() {
       <SignedIn>
         <View style={styles.container}>
           <NavigationContainer>
-            <TabNavigator />
+            <Stack.Navigator>
+                <Stack.Screen name="Homepage" component={TabNavigator} options={{headerShown: false}}/>
+                <Stack.Screen name="ProductDetail" component={ProductDetail} options={{headerShown: false}} />
+            </Stack.Navigator>
           </NavigationContainer>
         </View>
       </SignedIn>

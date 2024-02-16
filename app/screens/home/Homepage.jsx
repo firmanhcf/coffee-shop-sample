@@ -10,7 +10,7 @@ import Api from '../../utils/Api'
 
 const {width} = Dimensions.get('window')
 
-export default function Homepage() {
+export default function Homepage({ navigation }) {
     const { isLoaded, isSignedIn, user } = useUser()
     const [category, setCategory] = useState()
     const [product, setProduct] = useState()
@@ -45,7 +45,7 @@ export default function Homepage() {
 
     return (
         <View>
-            <StatusBar style='light' backgroundColor="#313131"/>
+            <StatusBar style='light' backgroundColor={Colors.SPACEGRAY}/>
             <LinearGradient colors={['#313131','#131313']} start={{x:1, y:0}} style={styles.headingContainer}>
                 <View style={styles.profileContainer}>
                     <TouchableOpacity>
@@ -100,7 +100,13 @@ export default function Homepage() {
                     style={{height: width-30, marginBottom: 20}}
                     data={product}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.productContainer}>
+                        <TouchableOpacity 
+                            style={styles.productContainer}
+                            onPress={() =>
+                                navigation.navigate('ProductDetail', {
+                                  product: item,
+                                })
+                            }>
                             <ImageBackground imageStyle={{ borderRadius: 15}} style={styles.imageThumbnail} source={{ uri: item?.photo?.url }}>
                                 <View style={{flex: 1, flexDirection:'row'}}>
                                     <Svg style width="14" height="15" viewBox="0 -3 13 14" fill={Colors.YELLOW}>
@@ -259,7 +265,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.WHITE,
         height : ((width/2)-60)+100,
         borderRadius: 15,
-        padding: 4
+        padding: 3
     },
     imageThumbnail: {
         height: ((width/2)-60),

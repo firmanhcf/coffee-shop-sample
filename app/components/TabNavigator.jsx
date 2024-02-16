@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { StyleSheet} from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -6,10 +6,11 @@ import Homepage from '../screens/home/Homepage'
 import Orderpage from '../screens/order/Orderpage'
 import Favoritepage from '../screens/favorite/Favoritepage'
 import Notificationpage from '../screens/notification/Notificationpage'
+
 import Colors from '../utils/Colors'
 import Svg, { Path } from 'react-native-svg'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function TabNavigator() {
   return (
@@ -26,7 +27,6 @@ export default function TabNavigator() {
             name="Home" 
             component={Homepage}
             options={{
-                title: 'My profile',
                 tabBarIcon: ({size,color}) => {
                   return (
                     <Svg
@@ -52,7 +52,6 @@ export default function TabNavigator() {
             name="Favorite"
             component={Favoritepage} 
             options={{
-                title: 'My profile',
                 tabBarIcon: ({size,color}) => {
                   return (
                     <Svg
@@ -77,7 +76,6 @@ export default function TabNavigator() {
             name="Order" 
             component={Orderpage} 
             options={{
-                title: 'My profile',
                 tabBarIcon: ({size,color}) => {
                   return (
                     <Svg
@@ -101,7 +99,6 @@ export default function TabNavigator() {
             name="Notification" 
             component={Notificationpage} 
             options={{
-                title: 'My profile',
                 tabBarIcon: ({size,color}) => {
                   return (
                     <Svg
@@ -130,6 +127,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         position: "absolute",
-        bottom: 0
+        bottom: 0,
+        backgroundColor: Colors.GRAYWHITE
     }
 })

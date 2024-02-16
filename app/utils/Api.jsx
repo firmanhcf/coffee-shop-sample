@@ -36,7 +36,31 @@ const getProductByCategory = (category)=>{
     return result
 }
 
+const getProductDetail = (product)=>{
+    const query = gql`
+    query ProductDetail {
+        product(where: {id: "`+product+`"}) {
+          id
+          name
+          price
+          rating
+          description
+          totalOrder
+          photo {
+            url
+          }
+          category {
+            name
+          }
+        }
+      }
+    `
+    const result = request(URL, query)
+    return result
+}
+
 export default{
     getCategories,
-    getProductByCategory
+    getProductByCategory,
+    getProductDetail
 }

@@ -7,5 +7,7 @@ export default{
     DARKGRAY: '#131313',
     SPACEGRAY: '#313131',
     RED: '#ED5151',
-    YELLOW: '#FBBE21'
+    YELLOW: '#FBBE21',
+    GRAYWHITE: '#F1F1F1',
+    GRAYNITE: '#EAEAEA'
 }
