@@ -2,7 +2,7 @@ import { request, gql } from 'graphql-request'
 
 const URL = "https://api-ap-southeast-2.hygraph.com/v2/clsk1i3563l5k01upxiqypm1u/master"
 
-const getCategories = ()=>{
+const getCategories = async ()=>{
     const query = gql`
         query Categories {
             categories {
@@ -11,11 +11,11 @@ const getCategories = ()=>{
             }
         }
     `
-    const result = request(URL, query)
+    const result = await request(URL, query)
     return result
 }
 
-const getProductByCategory = (category)=>{
+const getProductByCategory = async (category)=>{
     const query = gql`
     query ProductsByCategory {
         products(where: {category: {id: "`+category+`"}}) {
@@ -32,11 +32,11 @@ const getProductByCategory = (category)=>{
         }
       }
     `
-    const result = request(URL, query)
+    const result = await request(URL, query)
     return result
 }
 
-const getProductDetail = (product)=>{
+const getProductDetail = async (product)=>{
     const query = gql`
     query ProductDetail {
         product(where: {id: "`+product+`"}) {
@@ -55,7 +55,7 @@ const getProductDetail = (product)=>{
         }
       }
     `
-    const result = request(URL, query)
+    const result = await request(URL, query)
     return result
 }
 

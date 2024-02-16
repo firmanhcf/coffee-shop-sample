@@ -128,6 +128,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         position: "absolute",
         bottom: 0,
-        backgroundColor: Colors.GRAYWHITE
+        backgroundColor: Colors.WHITE
     }
 })

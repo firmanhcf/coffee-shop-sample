@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Dimensions, Text } from 'react-native'
+import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from '../../utils/Colors'
 import Svg, { Path } from 'react-native-svg'
@@ -8,13 +8,17 @@ const {width} = Dimensions.get('window')
 
 export default function Product({product}) {
   const [ item, setItem ] = useState()
+  const [ size, setSize ] = useState()
 
   const getProductDetail = (productId)=>{
         Api.getProductDetail(productId).then(resp=>{
-            console.log(resp?.product)
             setItem(resp?.product)
         })
   }
+
+  useEffect(()=>{
+    setSize('M')
+  },[])
 
   useEffect(()=>{
     getProductDetail(product?.id)
@@ -35,8 +39,14 @@ export default function Product({product}) {
                 <Text style={{fontFamily: 'sora', fontSize: 12, marginTop: 6, marginLeft: 3, color: Colors.GRAY}}>({item?.totalOrder})</Text>
             </View>
         </View>
-        <View>
-            
+
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+            <TouchableOpacity style={styles.toggle}>
+              <Image source={require('../../../assets/images/bean.png')}></Image>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.toggle}>
+              <Image source={require('../../../assets/images/milk.png')}></Image>
+            </TouchableOpacity>
         </View>
       </View>
       <View>
@@ -45,6 +55,32 @@ export default function Product({product}) {
       </View>
       <View style={{marginTop: 10}}>
         <Text style={styles.heading}>Size</Text>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between', marginTop: 10}}>
+          <View style={{width: '31%'}}>
+              <TouchableOpacity style={(size=='S')?styles.buttonActive:styles.button} onPress={()=>{setSize('S')}}>
+                  <Text style={(size=='S')?styles.buttonTextActive:styles.buttonText}>S</Text>
+              </TouchableOpacity>
+          </View>
+          <View style={{width: '31%'}}>
+              <TouchableOpacity style={(size=='M')?styles.buttonActive:styles.button} onPress={()=>{setSize('M')}}>
+                  <Text style={(size=='M')?styles.buttonTextActive:styles.buttonText}>M</Text>
+              </TouchableOpacity>
+          </View>
+          <View style={{width: '31%'}}>
+              <TouchableOpacity style={(size=='L')?styles.buttonActive:styles.button} onPress={()=>{setSize('L')}}>
+                  <Text style={(size=='L')?styles.buttonTextActive:styles.buttonText}>L</Text>
+              </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+      <View style={styles.bottomContainer}>
+        <View>
+          <Text style={styles.priceLabel}>Price</Text>
+          <Text style={styles.priceText}>$ {product?.price}</Text>
+        </View>
+        <TouchableOpacity style={styles.orderButton}>
+          <Text style={styles.orderButtonText}>Buy Now</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -55,7 +91,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingTop: 20,
         paddingBottom: 10,
-        backgroundColor: Colors.WHITE
+        backgroundColor: Colors.LIGHTGRAY,
+        height: width*2
     },
     photo: {
         height: 225,
@@ -83,4 +120,80 @@ const styles = StyleSheet.create({
         lineHeight: 20,
         marginTop: 10
     },
+    button:{
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 10,
+      borderColor: Colors.GRAYNITE,
+      borderWidth: 1,
+      borderRadius: 15
+    },
+    buttonText:{
+      fontFamily: 'sora',
+      fontSize: 15
+    },
+    buttonActive:{
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 10,
+      borderColor: Colors.PRIMARY,
+      borderWidth: 1,
+      borderRadius: 15,
+      backgroundColor: Colors.PRIMARYOPAC
+    },
+    buttonTextActive:{
+      fontFamily: 'sora',
+      fontSize: 15,
+      color: Colors.PRIMARY
+    },
+    toggle:{
+      width: 45,
+      height: 45,
+      borderRadius: 15,
+      backgroundColor: Colors.LIGHTGRAY,
+      marginTop: 60,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginLeft: 10
+    },
+    bottomContainer:{
+      position: 'absolute',
+      height: 100,
+      left: 0, 
+      top: (width*2) - 120, 
+      paddingHorizontal: 30,
+      paddingTop: 15,
+      backgroundColor: Colors.WHITE,
+      borderTopLeftRadius: 25,
+      borderTopRightRadius: 25,
+      width: width,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    priceLabel:{
+      fontFamily: 'sora',
+      fontSize: 15,
+      color: Colors.GRAY
+    },
+    priceText:{
+      fontFamily: 'soraSemiBold',
+      fontSize: 19,
+      color: Colors.PRIMARY
+    },
+    orderButton:{
+      width: (width*0.75)-60,
+      height: 50,
+      backgroundColor: Colors.PRIMARY,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 15
+    },
+    orderButtonText:{
+      color: Colors.WHITE,
+      fontFamily: 'soraSemiBold',
+      fontSize: 17
+    }
 })
