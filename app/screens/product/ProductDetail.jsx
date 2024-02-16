@@ -7,8 +7,8 @@ export default function ProductDetail({ route, navigation }) {
   const { product } = route.params;
   return (
     <View>
-      <ScreenHeader navigation={navigation} category={product?.category?.name} />
-      <Product product={product} />
+      <ScreenHeader navigation={navigation} category={product?.category?.name} favorite={true} />
+      <Product product={product} navigation={navigation} />
     </View>
   )
 }

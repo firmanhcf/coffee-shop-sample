@@ -10,6 +10,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import TabNavigator from './app/components/TabNavigator'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import ProductDetail from './app/screens/product/ProductDetail'
+import CheckoutPage from './app/screens/checkout/CheckoutPage'
+import DeliveryDetail from './app/screens/delivery/DeliveryDetail'
 
 const Stack = createNativeStackNavigator()
 const tokenCache = {
@@ -49,6 +51,8 @@ export default function App() {
             <Stack.Navigator>
                 <Stack.Screen name="Homepage" component={TabNavigator} options={{headerShown: false}}/>
                 <Stack.Screen name="ProductDetail" component={ProductDetail} options={{headerShown: false}} />
+                <Stack.Screen name="CheckoutPage" component={CheckoutPage} options={{headerShown: false}} />
+                <Stack.Screen name="DeliveryDetail" component={DeliveryDetail} options={{headerShown: false}} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

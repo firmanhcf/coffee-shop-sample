@@ -6,7 +6,7 @@ import Api from '../../utils/Api'
 
 const {width} = Dimensions.get('window')
 
-export default function Product({product}) {
+export default function Product({product, navigation}) {
   const [ item, setItem ] = useState()
   const [ size, setSize ] = useState()
 
@@ -78,7 +78,12 @@ export default function Product({product}) {
           <Text style={styles.priceLabel}>Price</Text>
           <Text style={styles.priceText}>$ {product?.price}</Text>
         </View>
-        <TouchableOpacity style={styles.orderButton}>
+        <TouchableOpacity 
+          style={styles.orderButton}
+          onPress={() =>
+              navigation.navigate('CheckoutPage', {product: item})
+          }
+          >
           <Text style={styles.orderButtonText}>Buy Now</Text>
         </TouchableOpacity>
       </View>
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingTop: 20,
         paddingBottom: 10,
-        backgroundColor: Colors.LIGHTGRAY,
+        backgroundColor: Colors.WHITE,
         height: width*2
     },
     photo: {
@@ -171,7 +176,9 @@ const styles = StyleSheet.create({
       width: width,
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      elevation: 20,
+      shadowColor: Colors.BLACK,
     },
     priceLabel:{
       fontFamily: 'sora',
