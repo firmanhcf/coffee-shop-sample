@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Feather, Octicons } from '@expo/vector-icons'
 import Colors from '../../utils/Colors'
 import Svg, { Path } from 'react-native-svg'
@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 
 const {width} = Dimensions.get('window')
 
-export default function CheckoutDetail({product}) {
+export default function CheckoutDetail({product, navigation}) {
     const [ deliver, setDeliver ] = useState(true)
     const [ qty, setQty ] = useState(1)
     return (
@@ -120,7 +120,12 @@ export default function CheckoutDetail({product}) {
                         <Entypo  name="dots-three-horizontal" size={12} color="white" />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.orderButton}>
+                <TouchableOpacity 
+                    style={styles.orderButton}
+                    onPress={() =>
+                        navigation.navigate('DeliveryDetail', {product: product})
+                    }
+                >
                     <Text style={styles.orderButtonText}>Order</Text>
                 </TouchableOpacity>
             </View>

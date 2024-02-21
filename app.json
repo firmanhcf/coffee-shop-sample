@@ -33,7 +33,7 @@
     },
     "owner": "firmanhcf",
     "plugins": [
-      "expo-font"
+      "expo-font",
     ]
   }
 }

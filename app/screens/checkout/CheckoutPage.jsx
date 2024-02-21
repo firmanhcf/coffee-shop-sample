@@ -8,7 +8,7 @@ export default function CheckoutPage({ route, navigation }) {
   return (
     <View>
       <ScreenHeader navigation={navigation} category={'Order'} />
-      <CheckoutDetail product={product} />
+      <CheckoutDetail product={product} navigation={navigation} />
     </View>
   )
 }

@@ -10,5 +10,6 @@ export default{
     RED: '#ED5151',
     YELLOW: '#FBBE21',
     GRAYWHITE: '#F1F1F1',
-    GRAYNITE: '#EAEAEA'
+    GRAYNITE: '#EAEAEA',
+    GREEN: '#36C07E'
 }
